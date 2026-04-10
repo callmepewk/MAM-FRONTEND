@@ -8,4 +8,4 @@ const settingsSchema = new mongoose.Schema({
     abaDestino: { type: String, default: 'Página1' }
 }, { timestamps: true });
 
-export default mongoose.model('Settings', settingsSchema);
+module.exports = mongoose.model('Settings', settingsSchema);
