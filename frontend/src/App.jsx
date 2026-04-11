@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -14,22 +14,33 @@ import Tutorial from './pages/Tutorial';
 import PerguntasFrequentes from './pages/PerguntasFrequentes';
 
 function App() {
+  // Simulando verificação de login para segurança básica
+  const isAuth = !!localStorage.getItem('mam_user');
+
   return (
     <Routes>
+      {/* Rotas Públicas (Sem Sidebar/Layout) */}
       <Route path="/login" element={<Login />} />
-      <Route path="/cadastro" element={<Register />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/cadastro" element={<Navigate to="/register" />} />
       <Route path="/onboarding" element={<Onboarding />} />
-      
-      <Route path="/" element={<Layout><Dashboard /></Layout>} />
-      <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
-      <Route path="/motor" element={<Layout><Motor /></Layout>} />
-      <Route path="/planilhas" element={<Layout><Planilhas /></Layout>} />
-      <Route path="/leads" element={<Layout><Leads /></Layout>} />
-      <Route path="/plans" element={<Layout><Plans /></Layout>} />
-      <Route path="/perfil" element={<Layout><Profile /></Layout>} />
-      <Route path="/admin" element={<Layout><Admin /></Layout>} />
-      <Route path="/tutorial" element={<Layout><Tutorial /></Layout>} />
-      <Route path="/faq" element={<Layout><PerguntasFrequentes /></Layout>} />
+
+      {/* Rotas Privadas (Todas dentro do Layout SAE) */}
+      <Route element={<Layout />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/motor" element={<Motor />} />
+        <Route path="/planilhas" element={<Planilhas />} />
+        <Route path="/leads" element={<Leads />} />
+        <Route path="/plans" element={<Plans />} />
+        <Route path="/perfil" element={<Profile />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/tutorial" element={<Tutorial />} />
+        <Route path="/faq" element={<PerguntasFrequentes />} />
+      </Route>
+
+      {/* Fallback para não dar tela branca */}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
