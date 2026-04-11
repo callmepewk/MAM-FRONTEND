@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
 
-const settingsSchema = new mongoose.Schema({
-    userId: { type: String, required: true, unique: true },
-    spreadsheetId: { type: String, default: '' },
-    adminEmail: { type: String, default: '' },
-    adminPhone: { type: String, default: '' },
-    abaDestino: { type: String, default: 'Página1' }
-}, { timestamps: true });
+const SettingsSchema = new mongoose.Schema({
+  userId: { type: String, required: true, unique: true },
+  spreadsheetId: { type: String, required: true },
+  adminEmail: { type: String },
+  adminPhone: { type: String },
+  abaDestino: { type: String, default: 'Página1' }, // Campo essencial para o Motor V12
+  updatedAt: { type: Date, default: Date.now }
+});
 
-module.exports = mongoose.model('Settings', settingsSchema);
+export default mongoose.model('Settings', SettingsSchema);
