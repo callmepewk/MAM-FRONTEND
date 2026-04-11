@@ -2,11 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-fundo text-slate-200 antialiased;
+@layer base {
+  body {
+    /* bg-fundo deve estar definido no seu tailwind.config como #020617 ou similar */
+    @apply bg-[#020617] text-slate-200 antialiased overflow-x-hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* 🎯 Custom Text Selection (O toque de luxo) */
+  ::selection {
+    @apply bg-amber-500/30 text-white;
+  }
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0f172a; }
-::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+/* 🏎️ Scrollbar V12 Stealth Edition */
+::-webkit-scrollbar {
+  width: 5px; /* Mais fina para um look mais clean */
+}
+
+::-webkit-scrollbar-track {
+  background: #020617; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b; /* Cor do painel */
+  border-radius: 20px;
+  border: 1px solid #020617;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b; /* Amber 500 - Sincronizado com o sistema */
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+/* 📟 Global Utility para Itálico de Cockpit */
+.font-v12 {
+  font-family: 'Inter', sans-serif;
+  @apply italic font-black tracking-tighter;
+}
+
+/* ⚡ Animação de Brilho Suave para as engrenagens */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}

@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -13,31 +14,43 @@ import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import Plans from './pages/Plans';
 
+// 🏎️ Componente de Telemetria: Reseta o Scroll a cada troca de rota
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
-    <Routes>
-      {/* 🔓 Rotas sem Sidebar (Públicas) */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/onboarding" element={<Onboarding />} />
+    <>
+      <ScrollToTop />
+      <Routes>
+        {/* 🔓 Rotas Públicas (Sem Sidebar) */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/onboarding" element={<Onboarding />} />
 
-      {/* 🔐 Rotas com Sidebar (Privadas - O Layout é o PAI) */}
-      <Route element={<Layout />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/motor" element={<Motor />} />
-        <Route path="/leads" element={<Leads />} />
-        <Route path="/planilhas" element={<Planilhas />} />
-        <Route path="/tutorial" element={<Tutorial />} />
-        <Route path="/faq" element={<PerguntasFrequentes />} />
-        <Route path="/perfil" element={<Profile />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/plans" element={<Plans />} />
-      </Route>
-      
-      {/* 🚨 Redirecionamento de segurança */}
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+        {/* 🔐 Rotas Privadas (Com Layout/Sidebar V12) */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/motor" element={<Motor />} />
+          <Route path="/leads" element={<Leads />} />
+          <Route path="/planilhas" element={<Planilhas />} />
+          <Route path="/tutorial" element={<Tutorial />} />
+          <Route path="/faq" element={<PerguntasFrequentes />} />
+          <Route path="/perfil" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/plans" element={<Plans />} />
+        </Route>
+        
+        {/* 🚨 Redirecionamento de Segurança (Protocolo Fallback) */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
   );
 }
 

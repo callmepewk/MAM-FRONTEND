@@ -1,73 +1,120 @@
-export default function Tutorial() {
-  return (
-    // 📐 PADRONIZAÇÃO: max-w-7xl (Seguindo a régua da página de Planos)
-    <div className="max-w-7xl mx-auto flex flex-col gap-10 md:gap-16 pb-20 px-2 md:px-0">
-      
-      {/* HEADER ROBUSTO E RESPONSIVO */}
-      <div className="flex flex-col gap-4 text-center md:text-left">
-        <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase leading-tight">
-          Manual do Piloto
-        </h1>
-        <p className="text-gray-400 text-base md:text-xl font-medium italic">
-          Aprenda a pilotar a Ferrari das automações passo a passo.
-        </p>
-      </div>
-      
-      {/* GRID DE PASSOS - 100% VERTICAL NO MOBILE / PADRONIZADO NO PC */}
-      <div className="flex flex-col gap-6 md:gap-8">
-        
-        {/* PASSO 1 */}
-        <div className="bg-[#1e293b] p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] border-2 border-gray-800 shadow-xl hover:border-yellow-500/30 transition-colors duration-300">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-             <span className="bg-yellow-500 text-gray-900 w-10 h-10 rounded-full flex items-center justify-center font-black text-xl shrink-0">1</span>
-             <h2 className="text-xl md:text-2xl font-black text-yellow-500 uppercase tracking-widest">
-               Preparando o Terreno (Bases de Dados)
-             </h2>
-          </div>
-          <p className="text-gray-300 text-sm md:text-lg leading-relaxed font-medium">
-            Antes de rodar o motor, você precisa de contatos. Vá na aba <b>"Bases de Dados"</b> e adicione seus arquivos PDF, imagens ou links do Google Sheets. Se você tem várias planilhas espalhadas, use a função <b>"Compilar Planilhas"</b> para juntar todas em uma só base mestra e otimizar o tempo de extração.
-          </p>
-        </div>
-        
-        {/* PASSO 2 */}
-        <div className="bg-[#1e293b] p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] border-2 border-gray-800 shadow-xl hover:border-yellow-500/30 transition-colors duration-300">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-             <span className="bg-yellow-500 text-gray-900 w-10 h-10 rounded-full flex items-center justify-center font-black text-xl shrink-0">2</span>
-             <h2 className="text-xl md:text-2xl font-black text-yellow-500 uppercase tracking-widest">
-               Conectando as Turbinas (WhatsApp e Gmail)
-             </h2>
-          </div>
-          <p className="text-gray-300 text-sm md:text-lg leading-relaxed font-medium">
-            O Motor não anda sem combustível. Vá na aba <b>"Motor MAM"</b> e clique nos botões de Status no topo da tela para abrir o QR Code do WhatsApp e a autorização do Google. Sem isso, o robô não terá permissão para realizar os disparos automáticos.
-          </p>
-        </div>
-        
-        {/* PASSO 3 */}
-        <div className="bg-[#1e293b] p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] border-2 border-gray-800 shadow-xl hover:border-yellow-500/30 transition-colors duration-300">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-             <span className="bg-yellow-500 text-gray-900 w-10 h-10 rounded-full flex items-center justify-center font-black text-xl shrink-0">3</span>
-             <h2 className="text-xl md:text-2xl font-black text-yellow-500 uppercase tracking-widest">
-               Configurando a Campanha (Motor V12)
-             </h2>
-          </div>
-          <p className="text-gray-300 text-sm md:text-lg leading-relaxed font-medium">
-            Selecione as bases que deseja usar na fila de envio. Escolha se quer disparar por WhatsApp, E-mail ou ambos (Omnichannel). Defina a data de início e término. <b>Respeite os limites anti-ban</b> (50 por WPP e 100 por Email) para proteger a saúde das suas contas. Escreva uma copy matadora e clique em <b>ATIVAR O MAM</b>.
-          </p>
-        </div>
-        
-        {/* PASSO 4 */}
-        <div className="bg-[#1e293b] p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] border-2 border-gray-800 shadow-xl hover:border-yellow-500/30 transition-colors duration-300">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-             <span className="bg-yellow-500 text-gray-900 w-10 h-10 rounded-full flex items-center justify-center font-black text-xl shrink-0">4</span>
-             <h2 className="text-xl md:text-2xl font-black text-yellow-500 uppercase tracking-widest">
-               Colhendo os Frutos (Gestão de Leads)
-             </h2>
-          </div>
-          <p className="text-gray-300 text-sm md:text-lg leading-relaxed font-medium">
-            Conforme o Motor roda, a aba <b>"Gestão de Leads"</b> será populada automaticamente. O robô vai classificar quem está "Muito Quente", "Quente" ou "Frio". Se você for usuário <b>Premium</b>, poderá criar campanhas ultra-segmentadas enviando promoções exclusivas apenas para os leads com maior probabilidade de agendamento.
-          </p>
-        </div>
+import { BookOpen, Database, Zap, Settings, Target, ArrowRight, PlayCircle } from 'lucide-react';
 
+export default function Tutorial() {
+  const steps = [
+    {
+      id: "01",
+      title: "Preparando o Terreno",
+      subtitle: "Gestão de Ativos e Bases",
+      description: "Antes de acionar a ignição, você precisa de combustível. Vá em 'Bases de Dados' e carregue seus arquivos. Se possuir dados fragmentados, utilize nosso Compilador V12 para unificar até 5 origens em uma base mestra de alta performance.",
+      icon: <Database className="w-6 h-6" />,
+      tag: "ESTRUTURA"
+    },
+    {
+      id: "02",
+      title: "Conectando Turbinas",
+      subtitle: "Protocolos WhatsApp & Gmail",
+      description: "O motor não opera sem permissões. No painel do Motor MAM, realize o pareamento via QR Code e a autorização OAuth do Google. Esse 'aperto de mãos' digital é o que permite ao robô disparar em seu nome com 100% de segurança.",
+      icon: <Zap className="w-6 h-6" />,
+      tag: "CONEXÃO"
+    },
+    {
+      id: "03",
+      title: "Configurando a Campanha",
+      subtitle: "Parâmetros do Motor V12",
+      description: "Selecione suas bases e defina o canal (WhatsApp, E-mail ou Omnichannel). Configure os limites de cadência (Anti-Ban) e redija sua copy dinâmica. Ao clicar em 'Ativar MAM', o sistema inicia o processamento em nuvem imediatamente.",
+      icon: <Settings className="w-6 h-6" />,
+      tag: "OPERAÇÃO"
+    },
+    {
+      id: "04",
+      title: "Colhendo os Frutos",
+      subtitle: "Inteligência e Conversão",
+      description: "Monitore a aba 'Gestão de Leads'. Nossa IA classifica os pacientes em tempo real (🔥 Muito Quente, 🌡️ Quente ou ❄️ Frio). Use essa telemetria para focar sua energia comercial onde o fechamento é iminente.",
+      icon: <Target className="w-6 h-6" />,
+      tag: "RESULTADO"
+    }
+  ];
+
+  return (
+    <div className="flex flex-col gap-12 pb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+      
+      {/* 🏎️ HEADER V12 STYLE */}
+      <header className="flex flex-col xl:flex-row justify-between items-end gap-8">
+        <div className="space-y-2">
+          <h1 className="text-4xl md:text-7xl italic font-black tracking-tighter text-white uppercase leading-none">Manual do Piloto</h1>
+          <div className="flex items-center gap-3">
+            <span className="h-[2px] w-12 bg-amber-500"></span>
+            <p className="text-gray-500 text-xs md:text-sm font-black uppercase tracking-[0.4em]">Briefing Técnico de Operação V12</p>
+          </div>
+        </div>
+        
+        <button className="flex items-center gap-3 bg-amber-500/10 border border-amber-500/20 text-amber-500 py-4 px-8 rounded-3xl font-black text-[10px] uppercase tracking-widest hover:bg-amber-500 hover:text-black transition-all">
+          <PlayCircle className="w-5 h-5" /> Assistir Vídeo-Aula
+        </button>
+      </header>
+
+      {/* 🚥 GRID DE PASSOS (TIMELINE TECH) */}
+      <div className="grid grid-cols-1 gap-8 relative">
+        {/* Linha decorativa de conexão (Desktop) */}
+        <div className="hidden xl:block absolute left-14 top-0 bottom-0 w-px bg-gradient-to-b from-amber-500/50 via-white/5 to-transparent"></div>
+
+        {steps.map((step, i) => (
+          <div 
+            key={i} 
+            className="bg-[#1e293b]/40 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] md:rounded-[4rem] border border-white/5 shadow-2xl hover:border-amber-500/30 transition-all duration-500 group relative overflow-hidden"
+          >
+            {/* Glow de fundo */}
+            <div className="absolute -right-20 -top-20 w-64 h-64 bg-amber-500/5 blur-[100px] group-hover:bg-amber-500/10 transition-all"></div>
+
+            <div className="flex flex-col xl:flex-row gap-10 relative z-10">
+              
+              {/* INDICADOR NUMÉRICO E ÍCONE */}
+              <div className="flex items-center xl:flex-col gap-6">
+                <div className="w-16 h-16 md:w-24 md:h-24 bg-black/40 rounded-[2rem] border border-white/10 flex items-center justify-center text-amber-500 text-2xl md:text-4xl font-black italic shadow-2xl group-hover:border-amber-500/50 transition-all">
+                  {step.id}
+                </div>
+                <div className="p-4 bg-amber-500/10 rounded-2xl text-amber-500 group-hover:scale-110 transition-transform">
+                  {step.icon}
+                </div>
+              </div>
+
+              {/* CONTEÚDO TÉCNICO */}
+              <div className="flex flex-col gap-6 flex-1">
+                <div className="space-y-2">
+                  <span className="text-[10px] font-black text-amber-500 uppercase tracking-[0.5em]">{step.tag}</span>
+                  <h3 className="text-2xl md:text-4xl font-black text-white uppercase italic tracking-tighter leading-tight">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-500 text-xs md:text-sm font-black uppercase tracking-widest italic">{step.subtitle}</p>
+                </div>
+                
+                <div className="bg-black/20 p-6 md:p-8 rounded-[2rem] border border-white/5 relative">
+                   <p className="text-gray-400 text-sm md:text-lg font-medium leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* 🛠️ FOOTER FINAL (CTA) */}
+      <div className="bg-gradient-to-r from-[#1e293b]/40 to-transparent backdrop-blur-md p-10 md:p-14 rounded-[3rem] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 group">
+        <div className="space-y-2 text-center md:text-left">
+          <h4 className="text-2xl md:text-3xl font-black text-white italic uppercase tracking-tighter">Pronto para decolar?</h4>
+          <p className="text-gray-500 font-black text-[10px] uppercase tracking-[0.3em]">O Motor V12 está em standby aguardando seus comandos.</p>
+        </div>
+        
+        <button className="w-full md:w-auto bg-amber-500 text-black font-black py-6 px-12 rounded-[2rem] text-[10px] uppercase tracking-[0.3em] hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-[1.02] transition-all flex items-center justify-center gap-3">
+          Ir para o Cockpit <ArrowRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Decoração Final */}
+      <div className="text-center text-[9px] font-black text-gray-800 uppercase tracking-[0.6em] mt-10">
+         Flight Manual • Revision 2.4.12 • Ai Doctor Certified
       </div>
     </div>
   );
