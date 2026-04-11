@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom'; // Adicione o Outlet aqui
 
 export default function Layout({ children }) {
   const location = useLocation();
@@ -116,9 +117,15 @@ export default function Layout({ children }) {
         {/* Glow central de fundo */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/5 blur-[150px] pointer-events-none"></div>
 
-        <div className={`${maxWidthClass} mx-auto w-full flex flex-col gap-12 relative z-10 animate-in fade-in slide-in-from-bottom-4 duration-1000`}>
-            {children}
-        </div>
+{/* Antes estava assim: */}
+<div className={`${maxWidthClass} mx-auto w-full flex flex-col gap-12 relative z-10 ...`}>
+    {children} {/* 👈 APAGUE ISSO */}
+</div>
+
+{/* Deixe assim: */}
+<div className={`${maxWidthClass} mx-auto w-full flex flex-col gap-12 relative z-10 ...`}>
+    <Outlet /> {/* 👈 COLOQUE ISSO */}
+</div>
 
         {/* Rodapé sutil de versão */}
         <div className="mt-20 mb-10 text-center opacity-20">
